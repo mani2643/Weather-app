@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i data-lucide="cloud-sun"></i>Weather App</h1>
+            <p class="subtitle">Enter a city name to find weather there</p>
+        </header>
+        <form class="form">
+            <input type="text" id="searchBox" placeholder="Enter city">
+            <button type="submit" id="submitBtn">Search</button>
+        </form>
+
+        <div class="suggestions">
+            <span class="suggestion-label">Try:</span>
+            <button class="suggestion" data-name="visakhapatnam">visakhapatnam</button>
+            <button class="suggestion" data-name="vijayawada">vijayawada</button>
+            <button class="suggestion" data-name="bangalore">bangalore</button>
+            <button class="suggestion" data-name="ooty">ooty</button>
+            <button class="suggestion" data-name="hyderabad">hyderabad</button>
+            <button class="suggestion" data-name="chennai">chennai</button>
+        </div>
+        <div class="result hidden" id="result">
+            <!-- <div class="city-name">
+                <h3>Miami, US</h3><i data-lucide="map-pin"></i>
+            </div>
+            <div class="info">
+                <i data-lucide="cloud-sun"></i>
+                <div class="">
+                    <h2>27.5°C</h2>
+                    <div class="description">Broken clouds</div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <i data-lucide="droplets"></i>
+                    <p class="humidity">Humidity</p>
+                    <p class="percentage">69%</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="wind"></i>
+                    <p class="humidity">Wind speed</p>
+                    <p class="percentage">4.3 m/s</p>
+                </div>
+            </div> -->
+        </div>
+        <div class="error hidden" id="error">City not found. Try again!</div>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
