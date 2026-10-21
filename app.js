@@ -69,7 +69,7 @@ function displayWeatherInfo(info){
             <div class="info">
                 <i data-lucide="${attribute}"></i>
                 <div class="">
-                    <h2>${temperature.toFixed(1)} °C</h2>
+                    <h1>${temperature.toFixed(1)} °C</h1>
                     <div class="description">${info.weather[0].description}</div>
                 </div>
             </div>
