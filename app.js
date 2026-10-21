@@ -3,6 +3,7 @@ const suggestions = document.querySelectorAll('.suggestion');
 const input = document.getElementById('searchBox');
 const resultDiv = document.getElementById('result');
 const errorDiv = document.getElementById('error');
+const loaderDiv = document.querySelector('.loading');
 
 // api key
 const apiKey = "26489e5928aee0630df07e5a74231568";
@@ -18,15 +19,16 @@ form.addEventListener('submit',async (e)=>{
 
     resultDiv.classList.add('hidden');
     errorDiv.classList.add('hidden');
+    loaderDiv.classList.remove('hidden');
 
     try {
         const weatherData = await getWeatherData(query);
         displayWeatherInfo(weatherData);
     } catch (error) {
-        console.log(error);
         resultDiv.classList.add('hidden');
         errorDiv.classList.remove('hidden');
     }finally{
+        loaderDiv.classList.add('hidden');
         input.value = "";
     }
 })
@@ -38,6 +40,7 @@ async function getWeatherData(city){
     if(!response.ok){
         throw new Error("Could not fetch weather data");
     }
+
     const data = await response.json();
 
     return data;
@@ -53,8 +56,6 @@ function displayWeatherInfo(info){
     }else{
         resultDiv.style.backgroundImage = "url('assets/Cinematic\ Vignetted\ Sunlit\ Sky.png')";
     }
-
-    console.log(iconCode);
     
     const id = info.weather[0].id;
     
@@ -95,6 +96,7 @@ suggestions.forEach((btn)=>{
 
         resultDiv.classList.add('hidden');
         errorDiv.classList.add('hidden');
+        loaderDiv.classList.remove('hidden');
 
         try{
             input.value = btn.dataset.name;
@@ -105,8 +107,8 @@ suggestions.forEach((btn)=>{
             errorDiv.classList.remove('hidden');
         }finally{
             input.value = "";
+            loaderDiv.classList.add('hidden');
         }
-    
     });
 })
 

@@ -210,6 +210,48 @@ h1 span{
 .description{
     color:var(--secondary-text);
 }
+.loading{
+    padding:20px;
+    text-align:center;
+    background-color:var(--surface);
+    border-radius:1rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+}
+.loading svg{
+    color:var(--accent);
+    height:35px;
+    width:35px;
+}
+.loading p{
+    color:var(--secondary-text);
+    font-size:0.9rem;
+    margin-bottom:10px;
+}
+.loader{
+    height:35px;
+    width:35px;
+    border:3px solid var(--accent);
+    border-radius:6px;
+    margin:0 auto 20px;
+    box-shadow:0 0 4px #f9e03f66;
+    animation:loader 1800ms linear infinite;
+}
+@keyframes loader{
+    0%{
+        transform:rotateX(0) rotateY(0) rotateZ(0);
+    }
+    33%{
+        transform:rotateX(180deg) rotateY(0) rotateZ(0);
+    }
+    66%{
+        transform:rotateX(180deg) rotateY(180deg) rotateZ(0);
+    }
+    100%{
+        transform:rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+    }
+}
 .error{
     text-align:center;
     color:var(--error-text);
