@@ -45,8 +45,21 @@ async function getWeatherData(city){
 
 function displayWeatherInfo(info){
     resultDiv.classList.remove('hidden');
-    // console.log(info);
     
+    const iconCode = info.weather[0].icon;
+
+    if(iconCode.endsWith('n')){
+        resultDiv.style.backgroundImage = "url('assets/Moonlit\ Clouds\ in\ a\ Deep\ Night\ Sky.png')";
+    }else{
+        resultDiv.style.backgroundImage = "url('assets/Cinematic\ Vignetted\ Sunlit\ Sky.png')";
+    }
+
+    console.log(iconCode);
+    
+    const id = info.weather[0].id;
+    
+    const attribute = getWeatherIcon(id,iconCode);
+
     const temperature = info.main.temp - 273.15;
 
     resultDiv.innerHTML = `
@@ -54,7 +67,7 @@ function displayWeatherInfo(info){
                 <h3>${info.name}, ${info.sys.country}</h3><i data-lucide="map-pin"></i>
             </div>
             <div class="info">
-                <i data-lucide="cloud-sun"></i>
+                <i data-lucide="${attribute}"></i>
                 <div class="">
                     <h2>${temperature.toFixed(1)} °C</h2>
                     <div class="description">${info.weather[0].description}</div>
@@ -96,3 +109,38 @@ suggestions.forEach((btn)=>{
     
     });
 })
+
+function getWeatherIcon(id,iconCode){
+    switch (true) {
+        case (id >= 200 && id<=232):
+            return "cloud-lightning";
+        case (id>= 300 && id<=321):
+            return "cloud-drizzle";
+        case (id>=500 && id<=504 || id>=520 && id<=531):
+            return "cloud-rain";
+        case (id===511 || id>=600 && id<=602 || id>=611 && id<=616 || id>=620 && id<=622):
+            return "cloud-snow";
+        case (id===701 || id===711 || id===721 || id===741 || id===762):
+            return "cloud-fog";
+        case (id===731 || id===751 || id===761 || id===771):
+            return "wind";
+        case (id===781):
+            return "tornado";
+        case (id===800):
+            if(iconCode.endsWith('n')){
+                return "moon";
+            }else{
+                return "sun";
+            }
+        case (id>=801 && id<=802):
+            if(iconCode.endsWith('n')){
+                return "cloud-moon";
+            }else{
+                return "cloud-sun";
+            }
+        case (id>=803 && id<=804):
+            return "cloud";
+        default:
+            return "cloud-sun";
+    }
+}
